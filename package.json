@@ -1,0 +1,24 @@
+{
+  "name": "marionette-exercise",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack-dev-server --inline",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "BSD-2-Clause",
+  "dependencies": {
+    "backbone": "^1.2.3",
+    "backbone.marionette": "^2.4.3",
+    "css-loader": "^0.21.0",
+    "handlebars": "^4.0.3",
+    "handlebars-template-loader": "^0.5.4",
+    "jquery": "^2.1.4",
+    "underscore": "^1.8.3",
+    "underscore-template-loader": "^0.5.2",
+    "webpack": "^1.12.2",
+    "webpack-dev-server": "^1.12.1"
+  }
+}

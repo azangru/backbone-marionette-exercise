@@ -1,0 +1,1 @@
+Example of a Marionette app packaged with Webpack: https://github.com/emaphp/webpack-helloworld
