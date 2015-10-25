@@ -1,0 +1,61 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 10px;
+}
+
+html, body, main {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.main-area-container {
+  height: 50%;
+  margin-bottom: 3rem;
+}
+
+.main-area {
+  display: flex;
+  height: 100%;
+  flex-direction: row;
+}
+
+#sidebar {
+  font-size: 2.5rem;
+  line-height: 3rem;
+  color: white;
+  width: 20%;
+  padding-left: 2%;
+  padding-top: 3%;
+  background-color: gray;
+}
+
+#large-view {
+  padding-top: 3%;
+  font-size: 5rem;
+  line-height: 8rem;
+  text-align: center;
+  width: 80%;
+  background-color: silver;
+}
+
+.nav-items {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  > div {
+    width: 16.66%;
+    text-align: center;
+    background: silver;
+    font-size: 3rem;
+    line-height: 4rem;
+    border: 1px solid gray;
+    padding: 2rem 0;
+  }
+}
+
+.nav-item {
+}

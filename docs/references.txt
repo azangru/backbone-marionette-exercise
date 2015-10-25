@@ -1,1 +1,2 @@
 Example of a Marionette app packaged with Webpack: https://github.com/emaphp/webpack-helloworld
+Marionette Fundamentals: https://github.com/victorkung/marionetteFundamentals
