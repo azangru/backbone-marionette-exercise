@@ -5,24 +5,25 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server -d --inline",
-    "build-prod": "webpack -p",
+    "build-prod": "webpack -p --config webpack-production.config.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "BSD-2-Clause",
   "dependencies": {
+    "autoprefixer-loader": "^3.1.0",
     "backbone": "^1.2.3",
     "backbone.marionette": "^2.4.3",
     "css-loader": "^0.21.0",
     "handlebars": "^4.0.3",
     "handlebars-template-loader": "^0.5.4",
     "jquery": "^2.1.4",
+    "node-sass": "~3.3.3",
+    "sass-loader": "~3.0.0",
+    "style-loader": "~0.13.0",
     "underscore": "^1.8.3",
     "underscore-template-loader": "^0.5.2",
     "webpack": "^1.12.2",
-    "webpack-dev-server": "^1.12.1",
-    "style-loader": "~0.13.0",
-    "node-sass": "~3.3.3",
-    "sass-loader": "~3.0.0"
+    "webpack-dev-server": "^1.12.1"
   }
 }

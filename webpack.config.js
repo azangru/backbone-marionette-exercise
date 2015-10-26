@@ -21,7 +21,7 @@ module.exports = {
   module: {
     loaders: [
       { test: /\.css$/, exclude: /node_modules/, loader: "style!css" },
-      { test: /\.scss$/, exclude: /node_modules/, loader: "style!css!sass" },
+      { test: /\.scss$/, exclude: /node_modules/, loader: "style!css!autoprefixer!sass" },
       { test: /\.html/, loader: "underscore-template-loader" },
       { test: /\.hbs/, loader: "handlebars-template-loader" }
       //{ test: /\.woff(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=10000&minetype=application/font-woff" },
