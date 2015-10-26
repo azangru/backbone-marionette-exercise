@@ -24,9 +24,7 @@ var Orchestrator = Marionette.Object.extend({
     // event listeners
     // on the collection
     var self = this;
-    this.people.on('sync', function(){
-      self.goToPersonByIndex(1);
-    });
+    this.people.on('sync', this.goToPersonAfterCollectionSync, this);
     // on the collection view
     this.peopleNavigation.on('person:selected', this.goToPersonById, this);
     // on the arrow view
@@ -50,6 +48,19 @@ var Orchestrator = Marionette.Object.extend({
     });
     var view = this.peopleNavigation.children.findByModel(person);
     view.addHighlight();
+  },
+
+  goToPersonAfterCollectionSync: function() {
+    // check whether the url already contains a valid id
+    var currentPath = window.location.hash;
+    var personId = currentPath.match(/#person\/(.*)/) ? currentPath.match(/#person\/(.*)/)[1] : null;
+    // if it does and if a person with this id exists in the collection, show that person
+    if (personId && this.people.get(personId)){
+      this.goToPersonById(personId);
+    } else {
+      // otherwise select the second person in the nav block
+      this.goToPersonByIndex(1);
+    }
   },
 
   goToPersonById: function(id){
@@ -106,8 +117,11 @@ var Orchestrator = Marionette.Object.extend({
 
   updateUrl: function(id){
     var currentPath = window.location.hash;
-    var currentId = currentPath.match(/#person\/(.*)/)[1];
-    if (currentPath != id) {
+    var idPart = currentPath.match(/#person\/(.*)/);
+    if (idPart) {
+      var currentId = idPart[1];
+    }
+    if (!idPart || currentId != id) {
       var path = 'person/' + id;
       Backbone.history.navigate(path);
     }
