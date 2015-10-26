@@ -23,6 +23,21 @@ var LayoutView = Marionette.LayoutView.extend({
 var NavigationItemView = Marionette.ItemView.extend({
   model: Models.Person,
   tagName: 'div',
+  events: {
+    'click': 'triggerSelected'
+  },
+  // triggers: {
+  //   'click': 'selected'
+  // },
+  triggerSelected: function(){
+    this.trigger('selected', this.model.get('id'));
+  },
+  removeHighlight: function(){
+    this.$el.removeClass('selected');
+  },
+  addHighlight: function(){
+    this.$el.addClass('selected');
+  },
   template: function(model) {
     return require('../templates/navItem.hbs')(model);
   }
@@ -30,8 +45,20 @@ var NavigationItemView = Marionette.ItemView.extend({
 
 var NavigationView = Marionette.CollectionView.extend({
   className: 'nav-items',
-  childView: NavigationItemView
-  //template: require('../templates/navigation.hbs')
+  childView: NavigationItemView,
+  childEvents: {
+    'selected': 'onChildSelected'
+  },
+  onChildSelected: function(view, message){
+    this.trigger('person:selected', message);
+  }
+});
+
+var ArrowView = Marionette.ItemView.extend({
+  model: Models.Person,
+  template: function(model) {
+    return require('../templates/arrowView.hbs')(model);
+  }
 });
 
 var SidebarView = Marionette.ItemView.extend({
@@ -53,5 +80,6 @@ module.exports = {
   NavigationView: NavigationView,
   NavigationItemView: NavigationItemView,
   SidebarView: SidebarView,
-  LargeView: LargeView
+  LargeView: LargeView,
+  ArrowView: ArrowView
 };

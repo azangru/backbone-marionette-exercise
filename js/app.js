@@ -16,17 +16,17 @@ app.on('start', function() {
 
   // Create a people collection
 
-  // Setup orchestrator (controller)
+  // Setup orchestrator
   var Orchestrator = require('./orchestrator');
   var orchestrator = new Orchestrator(layout);
 
-	//// Setup router
-	//var Router = require('./router');
-	//var router = new Router(controller);
+	// Setup router
+	var Router = require('./router');
+	var router = new Router(orchestrator);
 
 	//// Initialize history
-	//var Backbone = require('backbone');
-	//Backbone.history.start();
+	var Backbone = require('backbone');
+	Backbone.history.start();
 });
 
 module.exports = app;

@@ -55,7 +55,24 @@ html, body, main {
     border: 1px solid gray;
     padding: 2rem 0;
   }
+  .selected {
+    border: 3px solid black;
+  }
 }
 
 .nav-item {
+}
+
+#arrows {
+  width: 150px;
+  margin: 2rem auto 0 auto;
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: bold;
+  span {
+    padding: 0 1rem;
+  }
+  .left-arrow, .right-arrow {
+    cursor: pointer;
+  }
 }
