@@ -1,4 +1,3 @@
-console.log('hello from main.js!');
 require('../css/styles.scss');
 
 // Initialize the app

@@ -56,6 +56,14 @@ var NavigationView = Marionette.CollectionView.extend({
 
 var ArrowView = Marionette.ItemView.extend({
   model: Models.Person,
+  // events: {
+  //   'click .left-arrow': 'triggerSelected',
+  //   'click .right-arrow': 'triggerSelected'
+  // },
+  triggers: {
+    'click .left-arrow': 'showPreviousPerson',
+    'click .right-arrow': 'showNextPerson'
+  },
   template: function(model) {
     return require('../templates/arrowView.hbs')(model);
   }

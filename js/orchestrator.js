@@ -10,6 +10,13 @@ var Orchestrator = Marionette.Object.extend({
     this.people = new People();
     this.peopleNavigation = new Views.NavigationView({collection: this.people});
     this.layout.getRegion('peopleRegion').show(this.peopleNavigation);
+    this.sidebar = new Views.SidebarView({model: new Models.Person()});
+    this.layout.getRegion('sidebarRegion').show(this.sidebar);
+    this.largeView = new Views.LargeView({model: new Models.Person()});
+    this.layout.getRegion('largeViewRegion').show(this.largeView);
+    this.arrowView = new Views.ArrowView({model: new Models.Person()});
+    this.layout.getRegion('arrowsRegion').show(this.arrowView);
+
     this.people.fetch();
     // by default, select the second element in collection (not relying on its id)
     this.selectedIndex = 1;
@@ -22,24 +29,18 @@ var Orchestrator = Marionette.Object.extend({
     });
     // on the collection view
     this.peopleNavigation.on('person:selected', this.goToPersonById, this);
+    // on the arrow view
+    this.arrowView.on('showPreviousPerson', this.goToPreviousPerson, this);
+    this.arrowView.on('showNextPerson', this.goToNextPerson, this);
   },
 
   setSidebarArrowAndLargeViews: function(model){
-    if (this.sidebar) {
-      this.sidebar.destroy();
-    }
-    if (this.largeView) {
-      this.largeView.destroy();
-    }
-    if(this.arrowView) {
-      this.arrowView.destroy();
-    }
-    this.sidebar = new Views.SidebarView({model: model});
-    this.layout.getRegion('sidebarRegion').show(this.sidebar);
-    this.largeView = new Views.LargeView({model: model});
-    this.layout.getRegion('largeViewRegion').show(this.largeView);
-    this.arrowView = new Views.ArrowView({model: model});
-    this.layout.getRegion('arrowsRegion').show(this.arrowView);
+    this.sidebar.model.set(model.attributes);
+    this.sidebar.render();
+    this.largeView.model.set(model.attributes);
+    this.largeView.render();
+    this.arrowView.model.set(model.attributes);
+    this.arrowView.render();
   },
 
   selectPersonInNavigation: function(person){
@@ -85,7 +86,23 @@ var Orchestrator = Marionette.Object.extend({
     this.selectPersonInNavigation(person);
     // change selectedIndex
     this.selectedIndex = index;
-      },
+  },
+
+  goToPreviousPerson: function(){
+    var currentIndex = this.selectedIndex;
+    if (currentIndex - 1 < 0) {
+      return;
+    }
+    this.goToPersonByIndex(currentIndex - 1);
+  },
+
+  goToNextPerson: function(){
+    var currentIndex = this.selectedIndex;
+    if (currentIndex + 1 >= this.people.length) {
+      return;
+    }
+    this.goToPersonByIndex(currentIndex + 1);
+  },
 
   updateUrl: function(id){
     var currentPath = window.location.hash;
